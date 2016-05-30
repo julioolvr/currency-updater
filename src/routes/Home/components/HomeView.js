@@ -1,14 +1,40 @@
 import React from 'react'
-import DuckImage from '../assets/Duck.jpg'
-import classes from './HomeView.scss'
+
+const AVAILABLE_CURRENCIES = ['USD', 'GBP', 'EUR', 'ARS']
+
+function buildCurrenciesOptions(currencies) {
+  return currencies.map(currency => <option key={currency} value={currency}>{currency}</option>)
+}
 
 export const HomeView = () => (
   <div>
-    <h4>Welcome!</h4>
-    <img
-      alt='This is a duck, because Redux!'
-      className={classes.duck}
-      src={DuckImage} />
+    From:
+    <ul>
+      <li>
+        <select value="USD">
+          {buildCurrenciesOptions(AVAILABLE_CURRENCIES)}
+        </select>
+        <input type="number"></input>
+        <input type="number"></input>
+      </li>
+      <li>
+        <select value="GBP">
+          {buildCurrenciesOptions(AVAILABLE_CURRENCIES)}
+        </select>
+        <input type="number"></input>
+        <input type="number"></input>
+      </li>
+      <li>
+        <select value="EUR">
+          {buildCurrenciesOptions(AVAILABLE_CURRENCIES)}
+        </select>
+        <input type="number"></input>
+        <input type="number"></input>
+      </li>
+    </ul>
+    <div>
+      To: ARS, ARS1234.45
+    </div>
   </div>
 )
 
