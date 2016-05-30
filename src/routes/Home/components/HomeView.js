@@ -3,12 +3,16 @@ import React from 'react'
 const AVAILABLE_CURRENCIES = ['USD', 'GBP', 'EUR', 'ARS']
 const SELECTED_CURRENCIES = ['USD', 'GBP', 'EUR']
 
+function buildCurrencySelector(currency) {
+  return (<select value={currency}>
+    {buildCurrenciesOptions(AVAILABLE_CURRENCIES)}
+  </select>)
+}
+
 function buildCurrencyList(selectedCurrencies) {
   return selectedCurrencies.map(currency => {
     return (<li key={currency}>
-      <select value={currency}>
-        {buildCurrenciesOptions(AVAILABLE_CURRENCIES)}
-      </select>
+      {buildCurrencySelector(currency)}
       <input type="number"></input>
       <input type="number"></input>
     </li>)
@@ -26,7 +30,7 @@ export const HomeView = () => (
       {buildCurrencyList(SELECTED_CURRENCIES)}
     </ul>
     <div>
-      To: ARS, ARS1234.45
+      To: {buildCurrencySelector('ARS')}, ARS1234.45
     </div>
   </div>
 )
