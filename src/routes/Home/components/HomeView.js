@@ -1,25 +1,24 @@
 import React from 'react'
 
 import CurrencySelector from 'components/CurrencySelector'
+import CurrencyAmount from 'components/CurrencyAmount'
 
 const AVAILABLE_CURRENCIES = ['USD', 'GBP', 'EUR', 'ARS']
 const SELECTED_CURRENCIES = ['USD', 'GBP', 'EUR']
-
-function buildCurrencyList(selectedCurrencies) {
-  return selectedCurrencies.map(currency => {
-    return (<li key={currency}>
-      <CurrencySelector currencies={AVAILABLE_CURRENCIES} currency={currency}></CurrencySelector>
-      <input type="number"></input>
-      <input type="number"></input>
-    </li>)
-  })
-}
 
 export const HomeView = () => (
   <div>
     From:
     <ul>
-      {buildCurrencyList(SELECTED_CURRENCIES)}
+      {SELECTED_CURRENCIES.map(currency => {
+        return (<li key={currency}>
+          <CurrencyAmount currencies={AVAILABLE_CURRENCIES}
+                          currency={currency}
+                          rate={Math.random()}
+                          amount={Math.floor(Math.random() * 40)}>
+          </CurrencyAmount>
+        </li>)
+      })}
     </ul>
     <div>
       To: {<CurrencySelector currencies={AVAILABLE_CURRENCIES} currency="ARS"></CurrencySelector>}, ARS1234.45
